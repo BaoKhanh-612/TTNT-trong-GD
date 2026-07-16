@@ -14,6 +14,7 @@
             --text-dark: #333333;
         }
 
+
         /* Reset & Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--beige-light); color: var(--text-dark); overflow-x: hidden; }
@@ -193,19 +194,19 @@
     <!-- CÁC POPUP MODALS -->
     <!-- Modal Thành viên -->
     <div id="member-modal" class="modal-overlay">
-        <div class="modal-content">
+        <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
             <span class="close-btn" onclick="closeModal('member-modal')">&times;</span>
             <h3 class="modal-name" id="modal-name">Tên</h3>
             <p class="modal-slogan" id="modal-slogan">"Slogan"</p>
             <p class="modal-desc" id="modal-desc">Mô tả...</p>
-            <img id="modal-cv-img" src="" alt="CV Của thành viên" style=" object-fit: cover; border-radius: 0%;">
+            <img id="modal-cv-img" alt="CV Của thành viên" style=" object-fit: cover; border-radius: 0%;">
             <h2 id="modal-name"></h2>
         </div>
     </div>
 
     <!-- Modal Cả Nhóm -->
     <div id="team-modal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-content" style="max-width: 600px; max-height: 90vh; overflow-y: auto;">
             <span class="close-btn" onclick="closeModal('team-modal')">&times;</span>
             <h2 style="color: var(--dark-blue); margin-bottom: 20px; font-size: 2.2rem;">OZONE PLUS ONE</h2>
             <div> <img src="https://v1.padlet.pics/3/image.webp?t=c_limit%2Cdpr_1%2Ch_914%2Cw_807&url=https%3A%2F%2Fu1.padletusercontent.com%2Fuploads%2Fpadlet-uploads-usc1%2F5856534311%2F6496e52f3ec0193b846f8494a7373fbe%2Fz7965781319511_680043cae4476ab9dd92481ee2a1cc54.jpg%3Fexpiry_token%3D5WaHZRdGG3LkUVQGy3SZ-zdRtq89aJeottSBaF_Hii8dmxJqYDvE2-MDbblcM-ZrVekXW99RReKkJFIoMoKio4NS_thEPjHdXt9FrPGKl93zlaMvZscxfYyI2oGLxa73bvEPbEKlXFxVx_A4lv2bI9cTgxXmxhRUdWRjj4sXeWWD8dKUurzsML5xj0jdSHlws4OxiCdZvl8KPd-aMKIyiK1L1KXxOWEXZ0UVK1uPWScJZoOQgqOWOBySgqZwswZQ6qD5ah6wjma1mKbF6zp5Xg%3D%3D" alt="Minh họa" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;"> </div>
@@ -215,7 +216,7 @@
 
     <!-- Modal Tính Năng Khám Phá Mở Rộng -->
     <div id="feature-modal" class="modal-overlay">
-        <div class="modal-content modal-large">
+        <div class="modal-content modal-large" style="max-height: 90vh; overflow-y: auto;">
             <span class="close-btn" onclick="closeModal('feature-modal')">&times;</span>
             <h3 class="modal-name" id="feature-modal-title" style="border-bottom: 2px dashed #ccc; padding-bottom: 15px; margin-bottom: 20px; color: var(--dark-blue); text-align: center;">Tiêu đề</h3>
             <div class="modal-desc" id="feature-modal-desc" style="font-size: 1.15rem; line-height: 1.9; text-align: justify;">
@@ -246,12 +247,13 @@
                         <a href="#team" class="menu-link" data-title="About us : My Team">My Team</a>
                     </div>
                 </li>
+                <li><a href="#process" class="nav-link menu-link" data-title="Process">Process</a></li>
                 <li class="dropdown">
-                    <a href="#nckh" class="dropbtn menu-link" data-title="NCKH">NCKH</a>
+                    <a href="#nckh" class="dropbtn menu-link" data-title="Research Toolkit">Research Toolkit</a>
                     <div class="dropdown-content">
-                        <a href="#nckh-search" class="menu-link" data-title="NCKH : Hỗ trợ tìm kiếm TLTK">Hỗ trợ tìm kiếm TLTK</a>
-                        <a href="#nckh-analysis" class="menu-link" data-title="NCKH : Phân tích & Tóm tắt">Phân tích & Tóm tắt</a>
-                        <a href="#nckh-citation" class="menu-link" data-title="NCKH : Trích dẫn TLTK">Trích dẫn TLTK</a>
+                        <a href="#nckh-search" class="menu-link" data-title="Research Toolkit : Hỗ trợ tìm kiếm TLTK">Hỗ trợ tìm kiếm TLTK</a>
+                        <a href="#nckh-analysis" class="menu-link" data-title="Research Toolkit : Phân tích & Tóm tắt">Phân tích & Tóm tắt</a>
+                        <a href="#nckh-citation" class="menu-link" data-title="Research Toolkit : Trích dẫn TLTK">Trích dẫn TLTK</a>
                     </div>
                 </li>
                 <li><a href="#contact" class="nav-link menu-link" data-title="Work & Contact">Work & Contact</a></li>
@@ -279,42 +281,315 @@
             </div>
         </section>
 
+        <!-- Process -->
+        <section id="process">
+            <h2 class="section-title">Quy trình nghiên cứu khoa học</h2>
+            <div class="process-content">
+            <div class="container">
+            <html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hành Trình Nghiên Cứu Khoa Học</title>
+    <style>
+        /* CÀI ĐẶT TỔNG THỂ CHO TRANG WEB */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 30px;
+        }
+
+        /* KHUNG CHỨA NỘI DUNG (Giới hạn chiều rộng để dễ đọc) */
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            /* Khoảng cách dòng 1.8 giúp chữ không dính sát vào nhau */
+            line-height: 1.8; 
+        }
+
+        /* ĐỊNH DẠNG TIÊU ĐỀ */
+        h1 {
+            color: #123e70;
+            font-size: 26px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #123e70;
+        }
+        
+        h2 {
+            color: #d9534f;
+            font-size: 20px;
+            margin-top: 40px; /* Cách xa phần trên */
+            margin-bottom: 15px; /* Cách xa đoạn văn dưới */
+        }
+
+        /* ĐỊNH DẠNG ĐOẠN VĂN & DANH SÁCH */
+        p {
+            margin-bottom: 15px; /* Tách các đoạn văn ra xa nhau */
+            text-align: justify; /* Căn lề đều 2 bên */
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 25px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 10px; /* Tách khoảng cách giữa các gạch đầu dòng */
+        }
+
+        /* ĐỊNH DẠNG KHUNG QUY TRÌNH (Flowchart) */
+        .flowchart {
+            background-color: #eef2f5;
+            padding: 20px;
+            border-left: 5px solid #123e70;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 25px 0; /* Khoảng cách trên dưới cho khối này */
+            color: #2c3e50;
+            line-height: 2; /* Giãn dòng rộng hơn một chút cho quy trình */
+            text-align: center;
+        }
+
+        /* ĐỊNH DẠNG BẢNG (Giúp chữ không dính vào khung) */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background-color: #fff;
+        }
+        
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 15px; /* padding lớn giúp chữ cách xa đường viền */
+            vertical-align: top;
+        }
+        
+        th {
+            background-color: #f4f6f8;
+            color: #123e70;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #fcfcfc; /* Đổi màu nhẹ khi rê chuột vào dòng */
+        }
+
+        .highlight {
+            font-style: italic;
+            color: #666;
+            background-color: #fdfdfd;
+            padding: 10px;
+            border-left: 3px solid #ccc;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-container">
+        <h1>HÀNH TRÌNH BẮT ĐẦU NGHIÊN CỨU KHOA HỌC</h1>
+
+        <h2>2/ Tìm hiểu tài liệu</h2>
+        <p>Trước khi bắt tay vào nghiên cứu, hãy tìm hiểu những gì đã được công bố về chủ đề bạn quan tâm. Việc tìm kiếm và đọc tài liệu giúp bạn nắm bắt kiến thức nền, xác định khoảng trống nghiên cứu và tránh lặp lại những nghiên cứu đã có.</p>
+        <p><b>Quy trình thực hiện:</b></p>
+        <ul>
+            <li><b>Bước 1: Xác định từ khóa</b> - Chọn các từ khóa chính và từ đồng nghĩa liên quan đến chủ đề nghiên cứu.</li>
+            <li><b>Bước 2: Tìm kiếm tài liệu</b> - Sử dụng Google Scholar, Scopus, Web of Science hoặc các công cụ AI như Elicit, Consensus để tìm nguồn tài liệu phù hợp.</li>
+            <li><b>Bước 3: Đọc và chọn lọc</b> - Ưu tiên các bài báo uy tín, cập nhật và liên quan trực tiếp đến câu hỏi nghiên cứu. Một số công cụ hỗ trợ: ChatGPT, NotebookLM,...</li>
+            <li><b>Bước 4: Lưu trữ và tổng hợp</b> - Quản lý tài liệu bằng Zotero hoặc Mendeley, đồng thời ghi chú những nội dung quan trọng để phục vụ cho phần tổng quan nghiên cứu.</li>
+        </ul>
+
+        <h2>3/ Tìm khoảng trống nghiên cứu</h2>
+        <p>Khoảng trống nghiên cứu là những vấn đề chưa được giải quyết đầy đủ hoặc còn nhiều hạn chế trong các nghiên cứu trước. Việc xác định khoảng trống sẽ giúp bạn tìm ra hướng nghiên cứu mới và xây dựng đề tài có ý nghĩa.</p>
+        <div class="flowchart">
+            Đọc nhiều tài liệu &rarr; So sánh điểm giống và khác &rarr; Đặt câu hỏi <br>
+            <span style="font-weight: normal; color: #555;">(Điều gì chưa được làm? Điều gì chưa được giải thích? Nếu thay đổi đối tượng, phương pháp hoặc bối cảnh thì kết quả có khác không?)</span> <br>
+            &rarr; Xác định khoảng trống nghiên cứu
+        </div>
+
+        <h2>4/ Câu hỏi nghiên cứu</h2>
+        <p>Câu hỏi nghiên cứu là câu hỏi cốt lõi mà nghiên cứu của bạn cần trả lời. Một câu hỏi nghiên cứu rõ ràng sẽ định hướng toàn bộ quá trình lựa chọn mục tiêu, phương pháp và thu thập dữ liệu.</p>
+        <p><b>Một câu hỏi nghiên cứu tốt cần:</b></p>
+        <ul>
+            <li>Rõ ràng, dễ hiểu.</li>
+            <li>Tập trung vào một vấn đề cụ thể.</li>
+            <li>Có thể trả lời bằng dữ liệu hoặc bằng chứng.</li>
+            <li>Phù hợp với thời gian và nguồn lực nghiên cứu.</li>
+        </ul>
+        <div class="highlight">
+            Đề tài nghiên cứu là bạn nghiên cứu về điều gì. Câu hỏi nghiên cứu là điều bạn muốn tìm câu trả lời thông qua nghiên cứu.
+        </div>
+
+        <h2>5/ Xác định phương pháp nghiên cứu</h2>
+        <p>Sau khi có câu hỏi nghiên cứu, bạn cần lựa chọn phương pháp phù hợp để thu thập dữ liệu và tìm ra câu trả lời. Phương pháp nghiên cứu chính là "con đường" giúp bạn giải quyết vấn đề một cách khoa học. Câu hỏi nghiên cứu quyết định phương pháp nghiên cứu, chứ không phải ngược lại.</p>
+        <ul>
+            <li><b>Thực nghiệm:</b> Kiểm tra mối quan hệ nhân quả hoặc đánh giá hiệu quả của một giải pháp.</li>
+            <li><b>Khảo sát:</b> Thu thập dữ liệu từ bảng hỏi hoặc phiếu khảo sát.</li>
+            <li><b>Phỏng vấn:</b> Khám phá sâu suy nghĩ, trải nghiệm và quan điểm của người tham gia.</li>
+            <li><b>Quan sát:</b> Ghi nhận hành vi hoặc hiện tượng trong môi trường thực tế.</li>
+            <li><b>Phân tích tài liệu:</b> Khai thác và tổng hợp thông tin từ sách, bài báo, báo cáo hoặc văn bản.</li>
+        </ul>
+
+        <h2>6/ Thu thập dữ liệu</h2>
+        <p>Sau khi lựa chọn phương pháp nghiên cứu, bạn cần tiến hành thu thập dữ liệu theo kế hoạch đã xây dựng. Dữ liệu là cơ sở để kiểm chứng giả thuyết và trả lời câu hỏi nghiên cứu một cách khách quan.</p>
+        <table>
+            <tr>
+                <th>Hình thức</th>
+                <th>Ví dụ</th>
+            </tr>
+            <tr>
+                <td><b>Bảng hỏi</b></td>
+                <td>Khảo sát học sinh, sinh viên, giáo viên...</td>
+            </tr>
+            <tr>
+                <td><b>Phỏng vấn</b></td>
+                <td>Trao đổi trực tiếp để thu thập thông tin chuyên sâu.</td>
+            </tr>
+            <tr>
+                <td><b>Quan sát</b></td>
+                <td>Ghi nhận hành vi, hiện tượng trong thực tế.</td>
+            </tr>
+            <tr>
+                <td><b>Thực nghiệm</b></td>
+                <td>Thu thập số liệu từ các thí nghiệm hoặc thử nghiệm.</td>
+            </tr>
+            <tr>
+                <td><b>Tài liệu thứ cấp</b></td>
+                <td>Dữ liệu từ sách, bài báo, báo cáo, cơ sở dữ liệu...</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            Thu thập dữ liệu không phải là thu thập càng nhiều càng tốt, mà là thu thập đúng loại dữ liệu, từ đúng đối tượng và bằng đúng phương pháp để trả lời câu hỏi nghiên cứu.
+        </div>
+
+        <h2>7/ Phân tích số liệu</h2>
+        <p>Sau khi thu thập dữ liệu, bạn cần xử lý và phân tích để tìm ra các quy luật, xu hướng hoặc mối quan hệ giữa các yếu tố. Đây là bước giúp chuyển dữ liệu thành bằng chứng khoa học để trả lời câu hỏi nghiên cứu.</p>
+        <table>
+            <tr>
+                <th>Loại dữ liệu</th>
+                <th>Phương pháp phân tích</th>
+            </tr>
+            <tr>
+                <td><b>Định lượng</b></td>
+                <td>Thống kê mô tả, kiểm định giả thuyết, phân tích tương quan, hồi quy...</td>
+            </tr>
+            <tr>
+                <td><b>Định tính</b></td>
+                <td>Mã hóa dữ liệu, phân tích nội dung, phân tích chủ đề...</td>
+            </tr>
+        </table>
+        <p><b>Công cụ hỗ trợ:</b></p>
+        <ul>
+            <li>Excel – Xử lý và thống kê cơ bản.</li>
+            <li>SPSS – Phân tích thống kê.</li>
+            <li>R / Python - Phân tích dữ liệu chuyên sâu.</li>
+            <li>Origin – Xử lý và trực quan hóa dữ liệu khoa học.</li>
+        </ul>
+
+        <h2>8/ Viết báo cáo, bài báo khoa học</h2>
+        <p>Viết báo cáo hoặc bài báo khoa học là quá trình trình bày toàn bộ nghiên cứu một cách logic, rõ ràng và có căn cứ. Đây là bước giúp chia sẻ kết quả nghiên cứu với giảng viên, hội đồng hoặc cộng đồng khoa học.</p>
+        <table>
+            <tr>
+                <th style="width: 30%;">Đề mục</th>
+                <th>Nội dung chính</th>
+            </tr>
+            <tr>
+                <td><b>1. Tiêu đề (Title)</b></td>
+                <td>Ngắn gọn, phản ánh đúng nội dung nghiên cứu.</td>
+            </tr>
+            <tr>
+                <td><b>2. Tóm tắt (Abstract)</b></td>
+                <td>Giới thiệu ngắn gọn mục tiêu, phương pháp, kết quả và kết luận của nghiên cứu.</td>
+            </tr>
+            <tr>
+                <td><b>3. Từ khóa (Keywords)</b></td>
+                <td>3-6 từ khóa giúp người đọc tìm kiếm bài báo.</td>
+            </tr>
+            <tr>
+                <td><b>4. Đặt vấn đề (Introduction)</b></td>
+                <td>Trình bày bối cảnh, tổng quan nghiên cứu, khoảng trống nghiên cứu và mục tiêu nghiên cứu.</td>
+            </tr>
+            <tr>
+                <td><b>5. Phương pháp nghiên cứu (Methodology)</b></td>
+                <td>Mô tả đối tượng, công cụ, quy trình và phương pháp phân tích để người khác có thể tái thực hiện nghiên cứu.</td>
+            </tr>
+            <tr>
+                <td><b>6. Kết quả (Results)</b></td>
+                <td>Trình bày các kết quả thu được bằng bảng, biểu đồ hoặc hình ảnh, không diễn giải quá nhiều.</td>
+            </tr>
+            <tr>
+                <td><b>7. Thảo luận (Discussion)</b></td>
+                <td>Giải thích ý nghĩa của kết quả, so sánh với các nghiên cứu trước và làm rõ những điểm mới hoặc hạn chế.</td>
+            </tr>
+            <tr>
+                <td><b>8. Kết luận (Conclusion)</b></td>
+                <td>Tóm tắt những phát hiện chính và trả lời câu hỏi nghiên cứu.</td>
+            </tr>
+            <tr>
+                <td><b>9. Lời cảm ơn (Acknowledgements)</b></td>
+                <td>(nếu có) Ghi nhận sự hỗ trợ của cá nhân hoặc tổ chức.</td>
+            </tr>
+            <tr>
+                <td><b>10. Tài liệu tham khảo (References)</b></td>
+                <td>Liệt kê đầy đủ các tài liệu đã trích dẫn theo đúng chuẩn quy định.</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
+            </div>
+        </section>
+
         <!-- THÀNH VIÊN NHÓM -->
         <section id="team">
             <h2 class="section-title">My Team - <span id="team-trigger" title="Nhấn vào để xem thông tin đội">Ozone plus one</span></h2>
             <div class="team-container">
 
-            <div class="member-card" onclick="openModal(this)" data-img="CVNhu.png" data-name="Lê Ngọc Khánh Như">
+            <div class="member-card" onclick="openModal(this)" data-img="image/CVNhu.png" data-name="Lê Ngọc Khánh Như">
                 <div class="member" data-name="Lê Ngọc Khánh Như">
                     <div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 15px; border-radius: 8px;">
-                        <div> <img src="Như.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
+                        <div> <img src="image/Như.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
                     </div>
                     <h3>Lê Ngọc Khánh Như <br> 48.01.106.061</h3>
                 </div>
             </div>
 
-            <div class="member-card" onclick="openModal(this)" data-img="CVKhanh.png" data-name="Hứa Ngọc Bảo Khanh">
+            <div class="member-card" onclick="openModal(this)" data-img="image/CVKhanh.png" data-name="Hứa Ngọc Bảo Khanh">
                 <div class="member" data-name="Hứa Ngọc Bảo Khanh">
                     <div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 15px; border-radius: 8px;">
-                        <div> <img src="Khanh.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
+                        <div> <img src="image/Khanh.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
                     </div>
                     <h3>Hứa Ngọc Bảo Khanh <br> 49.01.103.036</h3>
                 </div>
             </div>
-
-            <div class="member-card" onclick="openModal(this)" data-img="CVTrieu.png" data-name="Nguyễn Quang Triệu">
+            
+            <div class="cv-container">
+            <div class="member-card" onclick="openModal(this)" data-img="image/CVTrieu.png" data-name="Nguyễn Quang Triệu">
+            </div>
                 <div class="member" data-name="Nguyễn Quang Triệu">
                     <div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 15px; border-radius: 8px;">
-                        <div> <img src="Trieu.JPG" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
+                        <div> <img src="image/Trieu.JPG" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
                     </div>
                     <h3>Nguyễn Quang Triệu <br> 51.01.401.181</h3>
                 </div>
             </div>
 
-            <div class="member-card" onclick="openModal(this)" data-img="CVMinh.png" data-name="Trần Nguyệt Minh">
+            <div class="member-card" onclick="openModal(this)" data-img="image/CVMinh.png" data-name="Trần Nguyệt Minh">
                 <div class="member" data-name="Trần Nguyệt Minh">
                     <div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 15px; border-radius: 8px;">
-                        <div> <img src="Minh.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
+                        <div> <img src="image/Minh.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
                     </div>
                     <h3>Trần Nguyệt Minh <br> 51.01.401.089</h3>
                 </div>
