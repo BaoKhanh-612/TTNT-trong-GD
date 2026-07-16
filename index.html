@@ -14,7 +14,98 @@
             --text-dark: #333333;
         }
 
+        /* KHUNG CHỨA NỘI DUNG (Giới hạn chiều rộng để dễ đọc) */
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            /* Khoảng cách dòng 1.8 giúp chữ không dính sát vào nhau */
+            line-height: 1.8; 
+        }
 
+        /* ĐỊNH DẠNG TIÊU ĐỀ */
+        h1 {
+            color: #123e70;
+            font-size: 26px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #123e70;
+        }
+        
+        h2 {
+            color: #d9534f;
+            font-size: 20px;
+            margin-top: 40px; /* Cách xa phần trên */
+            margin-bottom: 15px; /* Cách xa đoạn văn dưới */
+        }
+
+        /* ĐỊNH DẠNG ĐOẠN VĂN & DANH SÁCH */
+        p {
+            margin-bottom: 15px; /* Tách các đoạn văn ra xa nhau */
+            text-align: justify; /* Căn lề đều 2 bên */
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 25px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 10px; /* Tách khoảng cách giữa các gạch đầu dòng */
+        }
+
+        /* ĐỊNH DẠNG KHUNG QUY TRÌNH (Flowchart) */
+        .flowchart {
+            background-color: #eef2f5;
+            padding: 20px;
+            border-left: 5px solid #123e70;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 25px 0; /* Khoảng cách trên dưới cho khối này */
+            color: #2c3e50;
+            line-height: 2; /* Giãn dòng rộng hơn một chút cho quy trình */
+            text-align: center;
+        }
+
+        /* ĐỊNH DẠNG BẢNG (Giúp chữ không dính vào khung) */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background-color: #fff;
+        }
+        
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 15px; /* padding lớn giúp chữ cách xa đường viền */
+            vertical-align: top;
+        }
+        
+        th {
+            background-color: #f4f6f8;
+            color: #123e70;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #fcfcfc; /* Đổi màu nhẹ khi rê chuột vào dòng */
+        }
+
+        .highlight {
+            font-style: italic;
+            color: #666;
+            background-color: #fdfdfd;
+            padding: 10px;
+            border-left: 3px solid #ccc;
+            margin: 20px 0;
+        }
         /* Reset & Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--beige-light); color: var(--text-dark); overflow-x: hidden; }
@@ -291,101 +382,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hành Trình Nghiên Cứu Khoa Học</title>
-    <style>
-
-        /* KHUNG CHỨA NỘI DUNG (Giới hạn chiều rộng để dễ đọc) */
-        .content-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            /* Khoảng cách dòng 1.8 giúp chữ không dính sát vào nhau */
-            line-height: 1.8; 
-        }
-
-        /* ĐỊNH DẠNG TIÊU ĐỀ */
-        h1 {
-            color: #123e70;
-            font-size: 26px;
-            text-align: center;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #123e70;
-        }
-        
-        h2 {
-            color: #d9534f;
-            font-size: 20px;
-            margin-top: 40px; /* Cách xa phần trên */
-            margin-bottom: 15px; /* Cách xa đoạn văn dưới */
-        }
-
-        /* ĐỊNH DẠNG ĐOẠN VĂN & DANH SÁCH */
-        p {
-            margin-bottom: 15px; /* Tách các đoạn văn ra xa nhau */
-            text-align: justify; /* Căn lề đều 2 bên */
-        }
-
-        ul {
-            margin-top: 10px;
-            margin-bottom: 25px;
-            padding-left: 25px;
-        }
-
-        li {
-            margin-bottom: 10px; /* Tách khoảng cách giữa các gạch đầu dòng */
-        }
-
-        /* ĐỊNH DẠNG KHUNG QUY TRÌNH (Flowchart) */
-        .flowchart {
-            background-color: #eef2f5;
-            padding: 20px;
-            border-left: 5px solid #123e70;
-            border-radius: 5px;
-            font-weight: bold;
-            margin: 25px 0; /* Khoảng cách trên dưới cho khối này */
-            color: #2c3e50;
-            line-height: 2; /* Giãn dòng rộng hơn một chút cho quy trình */
-            text-align: center;
-        }
-
-        /* ĐỊNH DẠNG BẢNG (Giúp chữ không dính vào khung) */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background-color: #fff;
-        }
-        
-        th, td {
-            border: 1px solid #dee2e6;
-            padding: 15px; /* padding lớn giúp chữ cách xa đường viền */
-            vertical-align: top;
-        }
-        
-        th {
-            background-color: #f4f6f8;
-            color: #123e70;
-            text-align: left;
-            font-weight: bold;
-        }
-
-        tr:hover {
-            background-color: #fcfcfc; /* Đổi màu nhẹ khi rê chuột vào dòng */
-        }
-
-        .highlight {
-            font-style: italic;
-            color: #666;
-            background-color: #fdfdfd;
-            padding: 10px;
-            border-left: 3px solid #ccc;
-            margin: 20px 0;
-        }
-    </style>
 </head>
 <body>
 
@@ -549,39 +545,39 @@
             <h2 class="section-title">My Team - <span id="team-trigger" title="Nhấn vào để xem thông tin đội">Ozone plus one</span></h2>
             <div class="team-container">
 
-            <div class="member-card" onclick="openModal(this)" data-img="image/CVNhu.png" data-name="Lê Ngọc Khánh Như">
+            <div class="member-card" onclick="openModal(this)" data-img="CVNhu.png" data-name="Lê Ngọc Khánh Như">
                 <div class="member" data-name="Lê Ngọc Khánh Như">
                     <div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 15px; border-radius: 8px;">
-                        <div> <img src="image/Như.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
+                        <div> <img src="Như.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
                     </div>
                     <h3>Lê Ngọc Khánh Như <br> 48.01.106.061</h3>
                 </div>
             </div>
 
-            <div class="member-card" onclick="openModal(this)" data-img="image/CVKhanh.png" data-name="Hứa Ngọc Bảo Khanh">
+            <div class="member-card" onclick="openModal(this)" data-img="CVKhanh.png" data-name="Hứa Ngọc Bảo Khanh">
                 <div class="member" data-name="Hứa Ngọc Bảo Khanh">
                     <div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 15px; border-radius: 8px;">
-                        <div> <img src="image/Khanh.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
+                        <div> <img src="Khanh.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
                     </div>
                     <h3>Hứa Ngọc Bảo Khanh <br> 49.01.103.036</h3>
                 </div>
             </div>
             
             <div class="cv-container">
-            <div class="member-card" onclick="openModal(this)" data-img="image/CVTrieu.png" data-name="Nguyễn Quang Triệu">
+            <div class="member-card" onclick="openModal(this)" data-img="CVTrieu.png" data-name="Nguyễn Quang Triệu">
             </div>
                 <div class="member" data-name="Nguyễn Quang Triệu">
                     <div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 15px; border-radius: 8px;">
-                        <div> <img src="image/Trieu.JPG" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
+                        <div> <img src="Trieu.JPG" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
                     </div>
                     <h3>Nguyễn Quang Triệu <br> 51.01.401.181</h3>
                 </div>
             </div>
 
-            <div class="member-card" onclick="openModal(this)" data-img="image/CVMinh.png" data-name="Trần Nguyệt Minh">
+            <div class="member-card" onclick="openModal(this)" data-img="CVMinh.png" data-name="Trần Nguyệt Minh">
                 <div class="member" data-name="Trần Nguyệt Minh">
                     <div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 15px; border-radius: 8px;">
-                        <div> <img src="image/Minh.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
+                        <div> <img src="Minh.jpg" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"> </div>
                     </div>
                     <h3>Trần Nguyệt Minh <br> 51.01.401.089</h3>
                 </div>
