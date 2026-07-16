@@ -13,7 +13,6 @@
             --white: #ffffff;
             --text-dark: #333333;
         }
-
         /* KHUNG CHỨA NỘI DUNG (Giới hạn chiều rộng để dễ đọc) */
         .content-container {
             max-width: 900px;
@@ -50,10 +49,9 @@
             text-align: justify; /* Căn lề đều 2 bên */
         }
         footer p {
-        text-align: center;
-        margin-bottom: 0; /* Xóa khoảng trắng thừa để chữ nằm ngay ngắn giữa footer */
-        }
-
+    text-align: center;
+    margin-bottom: 0; /* Xóa khoảng trắng thừa để chữ nằm ngay ngắn giữa footer */
+}
         ul {
             margin-top: 10px;
             margin-bottom: 25px;
@@ -110,6 +108,7 @@
             border-left: 3px solid #ccc;
             margin: 20px 0;
         }
+
         /* Reset & Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--beige-light); color: var(--text-dark); overflow-x: hidden; }
@@ -381,15 +380,7 @@
             <h2 class="section-title">Quy trình nghiên cứu khoa học</h2>
             <div class="process-content">
             <div class="container">
-            <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hành Trình Nghiên Cứu Khoa Học</title>
-</head>
-<body>
-
-    <div class="content-container">
+        <div class="content-container">
         <h1>HÀNH TRÌNH BẮT ĐẦU NGHIÊN CỨU KHOA HỌC</h1>
 
         <h2>2/ Tìm hiểu tài liệu</h2>
@@ -536,9 +527,11 @@
                 <td><b>10. Tài liệu tham khảo (References)</b></td>
                 <td>Liệt kê đầy đủ các tài liệu đã trích dẫn theo đúng chuẩn quy định.</td>
             </tr>
-        </table>
+            </table>
+        </div>
     </div>
-</div></div></section>
+</div>
+</section>
 
         <!-- THÀNH VIÊN NHÓM -->
         <section id="team">
@@ -580,8 +573,7 @@
                     <h3>Trần Nguyệt Minh <br> 51.01.401.089</h3>
                 </div>
             </div>
-                
-        </div>
+            </div>
         </section>
 
         <!-- NCKH TỔNG QUAN -->
@@ -949,18 +941,18 @@
             }
         });
 
-    function openModal(element) {
-            // 1. Lấy thông tin từ card được chọn
-            const imgSrc = element.getAttribute('data-img');
-            const name = element.getAttribute('data-name');
-            
-            // 2. Gán thông tin vào Modal
-            document.getElementById('modal-cv-img').src = imgSrc;
-            document.getElementById('modal-name').textContent = name;
-            
-            // 3. Hiển thị modal
-            document.getElementById('member-modal').classList.add('show');
-        }
+        function openModal(element) {
+    // 1. Lấy thông tin từ card được chọn
+    const imgSrc = element.getAttribute('data-img');
+    const name = element.getAttribute('data-name');
+    
+    // 2. Gán thông tin vào Modal
+    document.getElementById('modal-cv-img').src = imgSrc;
+    document.getElementById('modal-name').textContent = name;
+    
+    // 3. Hiển thị modal (theo class hoặc style của bạn)
+    document.getElementById('member-modal').classList.add('show');
+}
     </script>
 </body>
 </html>
