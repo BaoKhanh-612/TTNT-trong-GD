@@ -292,6 +292,31 @@
         width: 100%;
         }
 
+        /* --- CHATBOT STYLES --- */
+        .chat-bot-widget { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
+        
+        .chat-bot-toggle { width: 60px; height: 60px; background-color: var(--dark-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s; }
+        .chat-bot-toggle:hover { transform: scale(1.1); background-color: var(--medium-blue); }
+        
+        .chat-bot-box { display: none; width: 350px; height: 480px; background-color: var(--white); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); flex-direction: column; overflow: hidden; position: absolute; bottom: 75px; right: 0; border: 2px solid var(--medium-blue); animation: fadeIn 0.3s ease-in-out; }
+        .chat-bot-box.active { display: flex; }
+        
+        .chat-header { background-color: var(--dark-blue); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .close-chat { cursor: pointer; font-size: 1.8rem; line-height: 1; transition: color 0.3s; }
+        .close-chat:hover { color: #ff6b6b; }
+        
+        .chat-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background-color: #f4f6f8; }
+        
+        .message { max-width: 85%; padding: 12px 16px; border-radius: 15px; font-size: 0.95rem; line-height: 1.5; word-wrap: break-word; }
+        .bot-message { background-color: var(--white); color: var(--text-dark); align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid #e0e0e0; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .user-message { background-color: var(--medium-blue); color: white; align-self: flex-end; border-bottom-right-radius: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        .chat-footer { display: flex; padding: 15px; border-top: 1px solid #eee; background-color: white; gap: 10px; }
+        .chat-footer input { flex: 1; padding: 10px 15px; border: 1px solid #ccc; border-radius: 20px; outline: none; font-family: inherit; font-size: 0.95rem; transition: border-color 0.3s; }
+        .chat-footer input:focus { border-color: var(--medium-blue); }
+        .chat-footer button { background-color: var(--dark-blue); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: background 0.3s; }
+        .chat-footer button:hover { background-color: var(--medium-blue); }
+
     </style>
 </head>
 <body>
@@ -799,6 +824,34 @@
         <p>© 2026 Ozone plus one. Trang web thuộc quyền sở hữu của Ozone Plus One.</p>
     </footer>
 
+    <!-- ================= CHATBOT UI ================= -->
+    <div class="chat-bot-widget">
+        <!-- Nút bong bóng chat -->
+        <div class="chat-bot-toggle" onclick="toggleChat()">
+            💬
+        </div>
+        <!-- Khung chat -->
+        <div class="chat-bot-box" id="chat-bot-box">
+            <div class="chat-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.5rem;">🤖</span>
+                    <strong>Trợ lý Ozone</strong>
+                </div>
+                <span class="close-chat" onclick="toggleChat()">&times;</span>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="message bot-message">
+                    Chào bạn! Mình là trợ lý AI của Ozone plus one. Mình có thể giúp gì cho bạn trong quá trình nghiên cứu khoa học?
+                </div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="chat-input" placeholder="Nhập câu hỏi..." onkeypress="handleEnter(event)">
+                <button onclick="sendMessage()">Gửi</button>
+            </div>
+        </div>
+    </div>
+    <!-- ================= END CHATBOT ================= -->
+
     <!-- JAVASCRIPT -->
     <script>
         // 1. Script gõ chữ
@@ -890,7 +943,7 @@
         // 5. CƠ SỞ DỮ LIỆU NỘI DUNG POPUP
         const contentDatabase = {
             "Gemini": {
-                "Phân tích số liệu": "<span style='color: red; font-weight: bold;'> TH1: Chưa có bất kì thông tin, dữ liệu nào ,tổng quan tài liệu, thiết kế thí nghiệm, khai phá dữ liệu </span> <br> <b>1.Bối cảnh nghiên cứu & vai trò: </b> <br>Bạn là một chuyên gia dữ liệu khoa học cấp cao. Tôi đang lên ý tưởng nghiên cứu về [Tên đề tài/Vật liệu] nhưng chưa tiến hành thí nghiệm và chưa tự có dữ liệu. <br> <b>2. Nhiệm vụ cụ thể: </b> <br>Mục tiêu nhằm khảo sát tiền nghiên cứu từ nền tảng tri thức đã xuất bản. Nhiệm vụ gồm: <br>• Tổng quan cấu trúc dữ liệu nền và hằng số lý thuyết tiêu chuẩn của đối tượng này. <br>• Khởi tạo một tập dữ liệu giả lập lý thuyết mô tả mối liên hệ giữa các biến số chính. <br>• Dự báo trước các điểm bất thường hoặc sai số hệ thống cần phòng tránh khi đo đạc thực tế. <br> <b>3. Phương pháp luận và ràng buộc khoa học: </b> <br>• Lập luận dựa trên nguyên lý khoa học chính xác. Nếu một xu hướng chưa có sự đồng thuận trong giới học thuật, hãy nêu rõ: Vấn đề này chưa có dữ liệu đồng thuận. <br>• Sử dụng thuật ngữ khoa học chuẩn xác, logic và khách quan. <br> <b> 4. Định dạng đầu ra yêu cầu: Hãy trình bày báo cáo theo cấu trúc: </b> <br>• Khung thông số Baseline lý thuyết chuẩn. <br>• Bảng ma trận dữ liệu giả lập (dạng Markdown) và mã Python (Google Colab) để sinh dữ liệu này kèm biểu đồ xu hướng. <br>• Các khuyến nghị phòng tránh sai số dữ liệu khi làm thực nghiệm. <span style='color: red; font-weight: bold;'> <br><br> TH2: Đã thực nghiệm + chưa có tài liệu tham khảo </span> <br> <b>1.Bối cảnh nghiên cứu & vai trò: </b> <br>Bạn là giáo sư nghiên cứu độc lập chuyên phát hiện các hiện tượng vật liệu mới. Tôi đang sở hữu tập dữ liệu thực nghiệm hoàn toàn mới về [Tên đề tài/Vật liệu] bằng phương pháp mới chưa từng có tiền lệ. Dữ liệu thô như sau: [Dán dữ liệu vào đây] <br> <b>2. Nhiệm vụ cụ thể: </b> <br>Mục tiêu của nghiên cứu này là nhằm tìm kiếm các phát hiện mới từ tập dữ liệu chưa có nhiều tài liệu tham khảo trước đây. Nhiệm vụ của bạn bao gồm: <br>• Làm sạch dữ liệu, loại bỏ các giá trị ngoại lai và thiếu sót. <br>•	Tổng quan cấu trúc dữ liệu. <br>• Phân tích thống kê mô tả các biến số chính. <br> • Yêu cầu chuyên sâu: <b>Tìm kiếm các mối quan hệ ngầm, các điểm dị biệt mang tính gợi mở, hoặc các xu hướng mới mà các nghiên cứu trước đây chưa từng đề cập.</b> <br>• Đưa ra các phát hiện cốt lõi và đề xuất các giả thuyết khoa học mới. <br> <b>3. Phương pháp luận và ràng buộc khoa học:</b> <br> • Chỉ phân tích dựa trên dữ liệu được cung cấp, TUYỆT ĐỐI không tự suy diễn hoặc bịa đặt số liệu nằm ngoài tập dữ liệu này. <br> •	Vì chưa có tài liệu đối chiếu trực tiếp, hãy tập trung vào lập luận quy nạp. Nếu dữ liệu không đủ cơ sở để đưa ra kết luận cho một giả thuyết, hãy nêu rõ: 'Dữ liệu chưa đủ bằng chứng để kết luận'. <br>• Sử dụng thuật ngữ khoa học chuẩn xác, lập luận logic và khách quan. <br> <b> 4. Định dạng đầu ra yêu cầu: Hãy trình bày báo cáo theo cấu trúc: </b> <br> • Tóm tắt tổng quan dữ liệu. <br>• Kết quả phân tích thống kê và các mối liên hệ mới phát hiện.<br>• Các phát hiện cốt lõi và đề xuất giả thuyết khoa học. <br>• Hạn chế của dữ liệu và định hướng nghiên cứu thực nghiệm tiếp theo để kiểm chứng giả thuyết, yêu cầu mã code + GG Colab. <br><br> <span style='color: red; font-weight: bold;'>TH3: Đã thực nghiệm + có tài liệu tham khảo</span><br><b>1. Bối cảnh nghiên cứu & vai trò:</b><br>Bạn là chuyên gia phản biện khoa học vật liệu và phân tích dữ liệu cao cấp. Tôi đang nghiên cứu về [Tên đề tài/Vật liệu] và đã có dữ liệu thực nghiệm sau: [Dán dữ liệu vào đây].<br><b>2. Nhiệm vụ cụ thể:</b><br>Mục tiêu nhằm đối chiếu kết quả thực nghiệm với nền tảng lý thuyết đã biết. Nhiệm vụ gồm:<br>• Tổng quan cấu trúc dữ liệu thực nghiệm và sàng lọc các sai số nằm ngoài dải thông thường của vật liệu chuẩn.<br>• Phân tích đối chiếu: So sánh kết quả (đỉnh phổ, hiệu suất...) với cấu trúc hoặc thư viện lý thuyết tiêu chuẩn đã được công bố.<br>• Yêu cầu chuyên sâu: <b>Giải thích cơ chế hóa lý/động học của hệ dựa trên các mô hình lý thuyết kinh điển.</b><br><b>3. Phương pháp luận và ràng buộc khoa học:</b><br>• Chỉ lập luận dựa trên dữ liệu được cung cấp và cơ sở lý luận khoa học chính thống. Không bịa đặt số liệu.<br>• <b>Đưa ra các định hướng hoặc gợi ý cụ thể về từ khóa học thuật và các nguồn tài liệu, tạp chí uy tín (Elsevier, Springer, Nature...) làm cơ sở lý luận đối chiếu.</b><br><b>4. Định dạng đầu ra yêu cầu: Hãy trình bày báo cáo phân tích theo cấu trúc sau:</b><br>• Tóm tắt tổng quan phân bố dữ liệu thực nghiệm.<br>• Kết quả đối chiếu, thảo luận sự tương đồng/khác biệt so với lý thuyết chuẩn.<br>• <b>Khuyến nghị từ khóa học thuật và tài liệu cần tra cứu sâu, yêu cầu mã code + GG Colab.</b> ",
+                "Phân tích số liệu": "<span style='color: red; font-weight: bold;'> TH1: Chưa có bất kì thông tin, dữ liệu nào ,tổng quan tài liệu, thiết kế thí nghiệm, khai phá dữ liệu </span> <br> <b>1.Bối cảnh nghiên cứu & vai trò: </b> <br>Bạn là một chuyên gia dữ liệu khoa học cấp cao. Tôi đang lên ý tưởng nghiên cứu về [Tên đề tài/Vật liệu] nhưng chưa tiến hành thí nghiệm và chưa tự có dữ liệu. <br> <b>2. Nhiệm vụ cụ thể: </b> <br>Mục tiêu nhằm khảo sát tiền nghiên cứu từ nền tảng tri thức đã xuất bản. Nhiệm vụ gồm: <br>• Tổng quan cấu trúc dữ liệu nền và hằng số lý thuyết tiêu chuẩn của đối tượng này. <br>• Khởi tạo một tập dữ liệu giả lập lý thuyết mô tả mối liên hệ giữa các biến số chính. <br>• Dự báo trước các điểm bất thường hoặc sai số hệ thống cần phòng tránh khi đo đạc thực tế. <br> <b>3. Phương pháp luận và ràng buộc khoa học: </b> <br>• Lập luận dựa trên nguyên lý khoa học chính xác. Nếu một xu hướng chưa có sự đồng thuận trong giới học thuật, hãy nêu rõ: Vấn đề này chưa có dữ liệu đồng thuận. <br>• Sử dụng thuật ngữ khoa học chuẩn xác, logic và khách quan. <br> <b> 4. Định dạng đầu ra yêu cầu: Hãy trình bày báo cáo theo cấu trúc: </b> <br>• Khung thông số Baseline lý thuyết chuẩn. <br>• Bảng ma trận dữ liệu giả lập (dạng Markdown) và mã Python (Google Colab) để sinh dữ liệu này kèm biểu đồ xu hướng. <br>• Các khuyến nghị phòng tránh sai số dữ liệu khi làm thực nghiệm. <span style='color: red; font-weight: bold;'> <br><br> TH2: Đã thực nghiệm + chưa có tài liệu tham khảo </span> <br> <b>1.Bối cảnh nghiên cứu & vai trò: </b> <br>Bạn là giáo sư nghiên cứu độc lập chuyên phát hiện các hiện tượng vật liệu mới. Tôi đang sở hữu tập dữ liệu thực nghiệm hoàn toàn mới về [Tên đề tài/Vật liệu] bằng phương pháp mới chưa từng có tiền lệ. Dữ liệu thô như sau: [Dán dữ liệu vào đây] <br> <b>2. Nhiệm vụ cụ thể: </b> <br>Mục tiêu của nghiên cứu này là nhằm tìm kiếm các phát hiện mới từ tập dữ liệu chưa có nhiều tài liệu tham khảo trước đây. Nhiệm vụ của bạn bao gồm: <br>• Làm sạch dữ liệu, loại bỏ các giá trị ngoại lai và thiếu sót. <br>•  Tổng quan cấu trúc dữ liệu. <br>• Phân tích thống kê mô tả các biến số chính. <br> • Yêu cầu chuyên sâu: <b>Tìm kiếm các mối quan hệ ngầm, các điểm dị biệt mang tính gợi mở, hoặc các xu hướng mới mà các nghiên cứu trước đây chưa từng đề cập.</b> <br>• Đưa ra các phát hiện cốt lõi và đề xuất các giả thuyết khoa học mới. <br> <b>3. Phương pháp luận và ràng buộc khoa học:</b> <br> • Chỉ phân tích dựa trên dữ liệu được cung cấp, TUYỆT ĐỐI không tự suy diễn hoặc bịa đặt số liệu nằm ngoài tập dữ liệu này. <br> • Vì chưa có tài liệu đối chiếu trực tiếp, hãy tập trung vào lập luận quy nạp. Nếu dữ liệu không đủ cơ sở để đưa ra kết luận cho một giả thuyết, hãy nêu rõ: 'Dữ liệu chưa đủ bằng chứng để kết luận'. <br>• Sử dụng thuật ngữ khoa học chuẩn xác, lập luận logic và khách quan. <br> <b> 4. Định dạng đầu ra yêu cầu: Hãy trình bày báo cáo theo cấu trúc: </b> <br> • Tóm tắt tổng quan dữ liệu. <br>• Kết quả phân tích thống kê và các mối liên hệ mới phát hiện.<br>• Các phát hiện cốt lõi và đề xuất giả thuyết khoa học. <br>• Hạn chế của dữ liệu và định hướng nghiên cứu thực nghiệm tiếp theo để kiểm chứng giả thuyết, yêu cầu mã code + GG Colab. <br><br> <span style='color: red; font-weight: bold;'>TH3: Đã thực nghiệm + có tài liệu tham khảo</span><br><b>1. Bối cảnh nghiên cứu & vai trò:</b><br>Bạn là chuyên gia phản biện khoa học vật liệu và phân tích dữ liệu cao cấp. Tôi đang nghiên cứu về [Tên đề tài/Vật liệu] và đã có dữ liệu thực nghiệm sau: [Dán dữ liệu vào đây].<br><b>2. Nhiệm vụ cụ thể:</b><br>Mục tiêu nhằm đối chiếu kết quả thực nghiệm với nền tảng lý thuyết đã biết. Nhiệm vụ gồm:<br>• Tổng quan cấu trúc dữ liệu thực nghiệm và sàng lọc các sai số nằm ngoài dải thông thường của vật liệu chuẩn.<br>• Phân tích đối chiếu: So sánh kết quả (đỉnh phổ, hiệu suất...) với cấu trúc hoặc thư viện lý thuyết tiêu chuẩn đã được công bố.<br>• Yêu cầu chuyên sâu: <b>Giải thích cơ chế hóa lý/động học của hệ dựa trên các mô hình lý thuyết kinh điển.</b><br><b>3. Phương pháp luận và ràng buộc khoa học:</b><br>• Chỉ lập luận dựa trên dữ liệu được cung cấp và cơ sở lý luận khoa học chính thống. Không bịa đặt số liệu.<br>• <b>Đưa ra các định hướng hoặc gợi ý cụ thể về từ khóa học thuật và các nguồn tài liệu, tạp chí uy tín (Elsevier, Springer, Nature...) làm cơ sở lý luận đối chiếu.</b><br><b>4. Định dạng đầu ra yêu cầu: Hãy trình bày báo cáo phân tích theo cấu trúc sau:</b><br>• Tóm tắt tổng quan phân bố dữ liệu thực nghiệm.<br>• Kết quả đối chiếu, thảo luận sự tương đồng/khác biệt so với lý thuyết chuẩn.<br>• <b>Khuyến nghị từ khóa học thuật và tài liệu cần tra cứu sâu, yêu cầu mã code + GG Colab.</b> ",
                 "Tóm tắt tài liệu tham khảo": "<span style='color: red; font-weight: bold;'>TH1: Khi đính kèm file</span><br>Hãy đọc kỹ file tài liệu tôi vừa đính kèm ở trên và viết một bản tóm tắt ngắn gọn, súc tích theo cấu trúc sau:<br><b>1.Mục tiêu chính:</b> Tài liệu này nghiên cứu hoặc giải quyết vấn đề gì?<br><b>2.Các luận điểm cốt lõi:</b> Liệt kê 3-5 ý chính quan trọng nhất dưới dạng gạch đầu dòng.<br><b>3.Kết luận/Kết quả:</b> Phát hiện hoặc thông điệp cuối cùng của tác giả là gì?<br>Lưu ý: Chỉ tóm tắt dựa trên thông tin có trong file, giữ nguyên các số liệu hoặc thuật ngữ quan trọng nếu có. <br><br><span style='color: green; font-weight: bold;'>TH2: Khi Copy – paste đoạn văn bản trực tiếp</span><br>Hãy đọc đoạn văn bản được cung cấp dưới đây và tóm tắt lại các ý chính một cách rõ ràng, dễ hiểu nhất dưới dạng các đầu dòng (bullet points).<br><b>Văn bản cần tóm tắt:</b> \"...\" [Dán đoạn văn bản hoặc trích dẫn tài liệu của bạn vào đây]<br><b>Yêu cầu:</b> Loại bỏ các chi tiết rườm rà, chỉ giữ lại bản chất của vấn đề và kết luận của đoạn văn. <br> <br><span style='color: #0056b3; font-weight: bold;'>TH3: Khi đính kèm file</span><br>Hãy truy cập vào đường link này: [Chèn link trang web/bài báo vào đây]. Sau đó, hãy đọc và tóm tắt lại nội dung của bài viết theo cấu trúc:<br><b>Tổng quan:</b> Bài viết nói về chủ đề gì trong 1-2 câu.<br><b>Các nội dung chính:</b> Các luận điểm hoặc thông tin quan trọng nhất được nhắc đến.<br><b>Thông điệp/Kết luận:</b> Điểm mấu chốt mà người đọc cần nắm được là gì?<br><b>Lưu ý:</b> Nếu link bị chặn hoặc không truy cập được, hãy báo lại cho tôi biết ngay.",
             },
             "ChatGPT": {
@@ -966,17 +1019,81 @@
         });
 
         function openModal(element) {
-    // 1. Lấy thông tin từ card được chọn
-    const imgSrc = element.getAttribute('data-img');
-    const name = element.getAttribute('data-name');
-    
-    // 2. Gán thông tin vào Modal
-    document.getElementById('modal-cv-img').src = imgSrc;
-    document.getElementById('modal-name').textContent = name;
-    
-    // 3. Hiển thị modal (theo class hoặc style của bạn)
-    document.getElementById('member-modal').classList.add('show');
-}
+            // 1. Lấy thông tin từ card được chọn
+            const imgSrc = element.getAttribute('data-img');
+            const name = element.getAttribute('data-name');
+            
+            // 2. Gán thông tin vào Modal
+            document.getElementById('modal-cv-img').src = imgSrc;
+            document.getElementById('modal-name').textContent = name;
+            
+            // 3. Hiển thị modal (theo class hoặc style của bạn)
+            document.getElementById('member-modal').classList.add('show');
+        }
+
+        // 7. LOGIC XỬ LÝ CHATBOT
+        function toggleChat() {
+            const chatBox = document.getElementById('chat-bot-box');
+            chatBox.classList.toggle('active');
+        }
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const inputField = document.getElementById('chat-input');
+            const message = inputField.value.trim();
+            if (message === '') return;
+
+            // 1. Hiển thị tin nhắn của người dùng
+            addMessage(message, 'user-message');
+            inputField.value = '';
+
+            // 2. Độ trễ giả lập Bot đang "gõ chữ" (600ms)
+            setTimeout(() => {
+                const botReply = getBotResponse(message.toLowerCase());
+                addMessage(botReply, 'bot-message');
+            }, 600);
+        }
+
+        function addMessage(text, className) {
+            const chatBody = document.getElementById('chat-body');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${className}`;
+            msgDiv.innerHTML = text; 
+            chatBody.appendChild(msgDiv);
+            
+            // Tự động cuộn xuống tin nhắn mới nhất
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // TỪ ĐIỂN CỦA BOT (Bạn có thể thêm các câu trả lời tại đây)
+        function getBotResponse(input) {
+            if (input.includes('chào') || input.includes('hello') || input.includes('hi')) {
+                return 'Chào bạn! Chúc bạn một ngày học tập và nghiên cứu hiệu quả. Mình có thể giúp gì cho bạn?';
+            }
+            if (input.includes('tài liệu') || input.includes('tìm kiếm')) {
+                return 'Để tìm kiếm tài liệu, bạn hãy truy cập mục <b>Hỗ trợ tìm kiếm tài liệu</b> trên thanh menu nhé. Các công cụ tốt nhất là Google Scholar, Consensus, và Elicit.';
+            }
+            if (input.includes('tóm tắt') || input.includes('phân tích')) {
+                return 'Việc tóm tắt tài liệu rất dễ dàng nếu bạn dùng <b>NotebookLM</b> hoặc <b>Claude</b>. Bạn có thể rê chuột vào tên các công cụ này ở mục Phân tích & Tóm tắt để lấy Prompt (câu lệnh) mẫu nha.';
+            }
+            if (input.includes('trích dẫn') || input.includes('zotero') || input.includes('mendeley')) {
+                return 'Bạn đang cần hỗ trợ trích dẫn? Zotero và Mendeley là 2 công cụ quản lý thư mục xuất sắc nhất hiện nay. Đừng quên cài đặt Plugin của chúng vào Word nhé!';
+            }
+            if (input.includes('ai') || input.includes('công cụ')) {
+                return 'Trang web của Ozone plus one cung cấp hướng dẫn cho nhiều AI: Gemini, ChatGPT, Claude, NotebookLM... Bạn đang gặp khó khăn ở giai đoạn nào trong quá trình làm tiểu luận/NCKH?';
+            }
+            if (input.includes('thành viên') || input.includes('nhóm')) {
+                return 'Nhóm Ozone plus one gồm các bạn: Khánh Như, Bảo Khanh, Quang Triệu và Nguyệt Minh. Bạn có thể vào phần <b>About us > My Team</b> để xem CV của từng người nhé!';
+            }
+            
+            // Trả lời mặc định nếu không hiểu
+            return 'Xin lỗi, mình chưa hiểu ý bạn lắm. 😅 Bạn có thể hỏi mình về: cách tìm tài liệu, công cụ tóm tắt, hướng dẫn trích dẫn, hoặc các tính năng của các con AI nhé!';
+        }
     </script>
 </body>
 </html>
